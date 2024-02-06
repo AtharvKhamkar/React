@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Toggle from './Toggle'
 import './index.css'
-
+import Example from './useRef/example.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Toggle/>
+    <Example />
   </React.StrictMode>,
 )

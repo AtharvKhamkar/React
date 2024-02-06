@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
   
-  let [counter,setCounter] = useState(15)
+  let [counter, setCounter] = useState(15)
+  
+  useEffect(() => {
+    console.log("Component is mounted")
+  }, [])
+  
+  useEffect(() => {
+    console.log("Value of counter is changed to ",counter)
+  },[counter])
 
   const IncreaseValue = () => {
     if (counter >= 20) {
