@@ -42,7 +42,23 @@ export class AuthService{
         }
     }
 
+    //check current user logged in or not
+    async getCurrentUser() {
+        try {
+            return await this.account.get();
+        } catch (error) {
+            console.log("Appwrite Service:: CurrentUser",error)
+        }
+        return null;
+    }
 
+    async logoutUser() {
+        try {
+            return await this.account.deleteSessions();
+        } catch (error) {
+            console.log("Appwrite Service:: Logout",error)
+        }
+    }
 }
  
 
