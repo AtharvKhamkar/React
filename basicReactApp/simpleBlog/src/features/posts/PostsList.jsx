@@ -1,11 +1,7 @@
-import React from 'react'
-import { useSelector,useDispatch } from "react-redux"
-import PostAuthor from './PostAuthor'
-import TimeAgo from './TimeAgo'
-import { selectAllPosts,getPostsStatus,getPostsError,fetchPosts } from './postsSlice'
-import ReactionButton from './ReactionButton'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux"
 import PostsExcerpt from './PostsExcerpt'
+import { fetchPosts, getPostsError, getPostsStatus, selectAllPosts } from './postsSlice'
 
 function PostsList() {
     const dispatch = useDispatch();
@@ -31,7 +27,6 @@ function PostsList() {
     
   return (
       <section>
-          <h2>Posts</h2>
           {content}
     </section>
   )
