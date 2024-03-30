@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllUsers } from '../users/usersSlice'
-import { selectPostById, updatePost } from './postsSlice'
+import { selectPostById, updatePost,deletePost } from './postsSlice'
 import { useParams,useNavigate } from 'react-router-dom'
 
 function AddPostForm() {
@@ -58,6 +58,22 @@ function AddPostForm() {
         <option key={user.id} value={user.id}>{ user.name}</option>
     ))
 
+    const onDeletePostClicked = () => {
+        try {
+            setRequestStatus('pending')
+            dispatch(deletePost({ id: post.id })).unwrap()
+            
+            setTitle('')
+            setContent('')
+            setUserId('')
+            navigate('/')
+        } catch (err) {
+            console.error('failed to delete the post',err)
+        } finally {
+            setRequestStatus('idle')
+        }
+    }
+
   return (
       <section>
           <h2>Edit Post</h2>
@@ -89,6 +105,9 @@ function AddPostForm() {
                   onClick={onSavePostClicked}
                   disabled={!canSave}
               >Save Post</button>
+              <button className="deleteButton" type="button" onClick={onDeletePostClicked}>
+                  Delete Post
+              </button>
           </form>
     </section>
   )
